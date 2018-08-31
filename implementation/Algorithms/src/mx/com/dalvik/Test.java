@@ -1,47 +1,26 @@
 package mx.com.dalvik;
 
-import mx.com.dalvik.model.BigONotation;
-import mx.com.dalvik.model.DiceSimulator;
-import mx.com.dalvik.model.Matrix;
+import mx.com.dalvik.model.dice.IDiceSimulator;
+import mx.com.dalvik.model.dice.DiceSimulatorOptimized;
+import mx.com.dalvik.model.dice.DiceSimulatorSimple;
+import mx.com.dalvik.model.dice.Logger;
 
 public class Test {
 
 	public static void main(String[] args) {
 		
-		DiceSimulator dice = new DiceSimulator();
-		dice.showFaces( dice.simulate( 10000 ) );
+		IDiceSimulator dice = new DiceSimulatorOptimized();
 		
-	}
-	
-	
-	public static void mainMatrix(String[] args) {
-		
-		double [][] m1 = {{1,2},{3,4}};
-		double [][] m2 = {{1,2},{2,1}};
-		
-		
-		Matrix matrix = new Matrix();
-		
-		double [][] res = matrix.multiply(m1, m2);
-		matrix.showMatrix( res );
-		
-//		int a = 1;
-//		a = a+1;	
-//		a++;
-		
-		// matrix.showMatrix( matrix.multiply(m1, m2) );
-		
-		
-	}
-	
-	public static void mainBigONotation (String[] args) {
-		// ...
-	}
-	
-	public static void mainWrapper(String[] args) {
-		// Wrapper		
-				System.out.println( Float.SIZE );
-				System.out.println( Double.SIZE );
+		dice.showFaces( dice.simulate( 100000 ), new Logger() {
+
+			@Override
+			public void print(Integer i, String face) {
+				
+				System.out.println( "Face( "+(i+1)+" ): " + face);
+			}
+			
+		});
+
 	}
 
 }
