@@ -38,6 +38,7 @@ public class Matrix {
 	public double dotProduct( double [] vector1, double [] vector2 ) {
 		double res = 0.0;
 		
+		// O(n)
 		for( int i = 0; i< vector1.length; i++ )
 			res += vector1[ i ] * vector2[ i ];
 		
