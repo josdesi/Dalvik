@@ -3,6 +3,17 @@ package mx.com.dalvik;
 import mx.com.dalvik.model.Matrix;
 
 public class TestMatrix {
+	
+	public static void main(String[] args) {
+		double [][] matrix = {{1,2},{3,4}};
+		double [] vector = {1,2};
+		
+		Matrix matrixTest = new Matrix();
+		
+		double[] res = matrixTest.multiplyMatrixVector(matrix, vector);
+		matrixTest.showVector( res );
+	}
+	
 	public static void mainMatrix(String[] args) {
 		
 		double [][] m1 = {{1,2},{3,4}};
