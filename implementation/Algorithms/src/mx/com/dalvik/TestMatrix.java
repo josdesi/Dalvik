@@ -4,7 +4,26 @@ import mx.com.dalvik.model.Matrix;
 
 public class TestMatrix {
 	
+	
 	public static void main(String[] args) {
+		
+		
+		double [] vector1 = {1,3};
+		double [] vector2 = {1,2};
+		
+		
+		Matrix test = new Matrix();
+		
+		double res = test.dotProduct(vector1, vector2);
+		
+		System.out.println( res );
+	
+	}
+	
+	
+	
+	public static void mainMatrixVector(String[] args) {
+		
 		double [][] matrix = {{1,2},{3,4}};
 		double [] vector = {1,2};
 		
