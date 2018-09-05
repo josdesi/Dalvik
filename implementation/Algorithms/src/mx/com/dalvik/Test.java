@@ -7,7 +7,14 @@ import mx.com.dalvik.model.dice.Logger;
 
 public class Test {
 
+	
 	public static void main(String[] args) {
+		System.out.println("...");
+	}
+	
+	
+	
+	public static void mainDiceSimulator(String[] args) {
 		
 		IDiceSimulator dice = new DiceSimulatorOptimized();
 		
