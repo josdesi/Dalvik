@@ -13,10 +13,12 @@ public class Test {
 
 	
 	public static void main(String[] args) {
-		double [][] matrix = {	{1,5,-2},
-								{2,3,1},
-								{2,4,-3}};
-		double [] vector = {2,5,2};
+		double [][] matrix = {	{1,1},
+								{0.035,0.05}};
+		double [] vector = {24000,930};
+		
+		
+		
 		
 		GaussianElimination gauss = new GaussianElimination();
 		double [] solve = gauss.solve(matrix, vector);
