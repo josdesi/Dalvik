@@ -13,9 +13,11 @@ public class Test {
 
 	
 	public static void main(String[] args) {
-		double [][] matrix = {	{1,1},
-								{0.035,0.05}};
-		double [] vector = {24000,930};
+		double [][] matrix = {	{1,1,1,1},
+								{1,5,25,125},
+								{1,20,400,8000},
+								{1,40,1600,64000}};
+		double [] vector = {56.5,113,181,214.5};
 		
 		
 		
