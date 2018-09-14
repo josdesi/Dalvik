@@ -2,4 +2,7 @@
     <string name="app_name">ShopCart</string>
     <string name="app_welcome_to_sign_in">GET STARTED</string>
     <string name="app_sign_in_title">Sign in</string>
+    <string name="app_sign_in_hint_email">Email</string>
+    <string name="app_sign_in_hint_passwd">Password</string>
+    <string name="app_sign_in_btn_login">LOGIN</string>
 </resources>
