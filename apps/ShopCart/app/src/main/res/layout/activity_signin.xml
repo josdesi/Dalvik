@@ -3,13 +3,41 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/logo"
+        />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SignIn"
-        tools:layout_editor_absoluteX="163dp"
-        tools:layout_editor_absoluteY="249dp" />
+        android:text="@string/app_sign_in_title"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:textStyle="bold"
+        android:textSize="28dp"
+        android:textColor="#363636"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="22dp"
+        android:gravity="center"
+        >
+        <View
+            android:id="@+id/separate"
+            android:layout_width="60dp"
+            android:layout_height="2dp"
+            android:background="#71c158"
+            />
+    </LinearLayout>
+
+
 </LinearLayout>
