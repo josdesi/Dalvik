@@ -5,10 +5,10 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/btnStart"
+        android:id="@+id/btnLogOut"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="HOME"
+        android:text="LOG OUT"
         android:layout_gravity="bottom"
         android:background="#60aae9"
         android:textColor="#FFF"
