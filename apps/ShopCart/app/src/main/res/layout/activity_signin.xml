@@ -61,6 +61,7 @@
             android:layout_marginLeft="15dp"
             >
             <EditText
+                android:id="@+id/txtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/app_sign_in_hint_email"
@@ -94,6 +95,7 @@
             android:layout_marginLeft="15dp"
             >
             <EditText
+                android:id="@+id/txtPasswd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/app_sign_in_hint_passwd"
