@@ -21,6 +21,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class SignInActivity extends AppCompatActivity {
 
@@ -106,6 +109,17 @@ public class SignInActivity extends AppCompatActivity {
         super.onStart();
 
         mAuth.addAuthStateListener( mAuthStateListener );
+
+        mRootChild.child("nodo").setValue( "New Text " );
+
+        Map<String, Object> datos = new HashMap<>();
+        datos.put("nombre","Robert");
+        datos.put("apellido","Mendez");
+        datos.put("telefono","5538780976");
+        datos.put("direccion","nte 11");
+        datos.put("email","robert@hotmail.com");
+
+        mDatabaseReference.child("usuario").setValue( datos );
 
         mRootChild.addValueEventListener(new ValueEventListener() {
             @Override
