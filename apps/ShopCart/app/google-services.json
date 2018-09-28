@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "965572261600",
+    "firebase_url": "https://dalvik-b8c5c.firebaseio.com",
+    "project_id": "dalvik-b8c5c",
+    "storage_bucket": "dalvik-b8c5c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:965572261600:android:d3d73e315d28654f",
+        "android_client_info": {
+          "package_name": "dalvik.com.mx.shopcart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "965572261600-8pi0a6jltf9nouvo4amqn2d2eb0s3dgk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dalvik.com.mx.shopcart",
+            "certificate_hash": "75c896e78ac60ebfe005c9fba1b1d8e86f6c3186"
+          }
+        },
+        {
+          "client_id": "965572261600-qjbkdv5hmn0smjtu5cub8aqrl6sk9no2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTG0kXjiRHQY_y8TbqEMWm9VWbdoPaAMk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "965572261600-qjbkdv5hmn0smjtu5cub8aqrl6sk9no2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

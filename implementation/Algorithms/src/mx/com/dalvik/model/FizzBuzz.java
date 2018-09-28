@@ -1,3 +1,5 @@
+package mx.com.dalvik.model;
+
 import java.util.Scanner;
 
 public class FizzBuzz {

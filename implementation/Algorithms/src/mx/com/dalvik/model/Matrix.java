@@ -21,6 +21,35 @@ public class Matrix {
 	}
 	
 	
+	public double [] multiplyMatrixVector( double [][] matrix, double [] vector ) {
+		
+		double [] res = new double[ vector.length ];
+		
+		// O(n^2)
+		for( int i = 0; i< matrix.length; i++ ) {
+			for( int j = 0; j< vector.length; j++ ) {
+				res[ i ] += matrix[ i ][ j ] * vector[ j ];
+			}
+		}
+		
+		return res;
+	}
+	
+	public double dotProduct( double [] vector1, double [] vector2 ) {
+		double res = 0.0;
+		
+		// O(n)
+		for( int i = 0; i< vector1.length; i++ )
+			res += vector1[ i ] * vector2[ i ];
+		
+		return res;
+	}
+	
+	public void showVector( double [] vector ) {
+		
+		for( int i = 0; i < vector.length; i++ )
+			System.out.println( vector[ i ] );
+	}
 	
 	public void showMatrix( double [][] m ) {
 		
