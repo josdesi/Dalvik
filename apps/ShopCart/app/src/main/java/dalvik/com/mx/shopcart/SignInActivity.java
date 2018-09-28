@@ -24,6 +24,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Map;
 
+import dalvik.com.mx.shopcart.dalvik.com.mx.shopcart.utils.Validator;
+
 
 public class SignInActivity extends AppCompatActivity {
 
@@ -81,11 +83,21 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     private void login() {
+
         String email = txtEmail.getText().toString();
         String passwd = txtPasswd.getText().toString();
 
         // Validations
-        if( email.equals("") || passwd.equals("") ) return;
+        if( !Validator.Email.validate( email ) ){
+            Toast.makeText(SignInActivity.this, "El email no es válido", Toast.LENGTH_LONG ).show();
+            return;
+        }
+
+        else if( !Validator.Password.validate( passwd ) ){
+            Toast.makeText(SignInActivity.this, "La contraseña no es válida", Toast.LENGTH_LONG ).show();
+            return;
+        }
+
 
         mAuth.signInWithEmailAndPassword( email, passwd )
             .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
