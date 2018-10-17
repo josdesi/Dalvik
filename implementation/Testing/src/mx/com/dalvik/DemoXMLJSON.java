@@ -1,11 +1,315 @@
 package mx.com.dalvik;
 
+import java.io.IOException;
+import java.io.StringReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.DOMException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+
 
 public class DemoXMLJSON {
 	
 	public static void main(String[] args) {
+		
+		
+		
+
+		
+		
+		new DemoXMLJSON().test();
+		
+		
+		
+	}
+	
+	public void test() {
+		String xml = ""
+				+ "<xml name='process'>"
+				+ "	<body>"
+				+ "		<entregas>"
+				+ "			<entrega>"
+				+ "				<estatus>Asignacion</estatus>"
+				+ "				<fecha>14/10/2018 21:10:37</fecha>"
+				+ "			</entrega>"
+				+ "			<entrega>"
+				+ "				<estatus>Creacion</estatus>"
+				+ "				<fecha>12/10/2018 21:10:37</fecha>"
+				+ "			</entrega>"
+				+ "			<entrega>"
+				+ "				<estatus>Devolucion</estatus>"
+				+ "				<fecha>16/10/2018 21:10:37</fecha>"
+				+ "			</entrega>"	
+				+ "			<entrega>"
+				+ "				<estatus>Salida</estatus>"
+				+ "				<fecha>13/10/2018 21:10:37</fecha>"
+				+ "			</entrega>"
+				+ "			<entrega>"
+				+ "				<estatus>Recepcion</estatus>"
+				+ "				<fecha>15/10/2018 21:10:37</fecha>"
+				+ "			</entrega>"
+				+ "		</entregas>"
+				+ "	</body>"
+				+ "</xml>";
+		
+		
+		
+		Document doc = convertStringToXMLDocument( xml );
+		System.out.println( doc.getDocumentElement().getChildNodes() );
+		
+		Node node = doc.getDocumentElement();
+		List<NodoEntrega> lista = new ArrayList<NodoEntrega>();
+		
+		
+		expandNodes( node, new CheckRule() {
+			public void check( Node currentNode ) {
+				
+				if( currentNode.getNodeName().equals("entrega") ) {
+					//System.out.println("entrega");
+					NodoEntrega n = createNodesEntrega( currentNode );
+					lista.add( n );
+					//System.out.println( n );
+				}
+
+			}
+
+			
+		} );
+		
+		for( NodoEntrega n: lista )
+			System.out.println( n );
+		
+		Collections.sort( lista, new Comparator<NodoEntrega>() {
+
+			@Override
+			public int compare(NodoEntrega a, NodoEntrega b) {
+				
+				return b.getFecha().compareTo( a.getFecha() );
+			}
+			
+		} );
+		
+		System.out.println("-----");
+		for( NodoEntrega n: lista )
+			System.out.println( n );
+		
+		System.out.println("-----");
+		if( lista.size() > 0 ) {
+			NodoEntrega ultimo = lista.get(0);
+			System.out.println("Ultimo estatus: ");
+			System.out.println( ultimo );
+		}
+		
+		
+	}
+	
+	
+	private NodoEntrega createNodesEntrega(Node currentNode) {
+		
+		NodoEntrega nodoEntrega = new NodoEntrega();
+		NodeList list = currentNode.getChildNodes();
+		for( int i = 0; i<list.getLength(); i++ ) {
+			
+			Node e = (Node) list.item( i );
+			
+			if( e.getNodeName().equals("estatus") ) {
+				// System.out.println( currentNode.getNodeName()  );
+				// System.out.println( e.getFirstChild().getNodeValue()  );
+				nodoEntrega.setEstatus( e.getFirstChild().getNodeValue() );
+			}
+			
+			if( e.getNodeName().equals("fecha") ) {
+				// System.out.println( currentNode.getNodeName()  );
+				// System.out.println( e.getFirstChild().getNodeValue()  );
+				SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+				try {
+					
+					nodoEntrega.setFecha( format.parse( e.getFirstChild().getNodeValue() ) );
+				
+				} catch (DOMException | ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		}
+		
+		return nodoEntrega;
+	}
+	
+
+	class NodoEntrega {
+		
+		private String estatus;
+		private Date fecha;
+		
+		public String getEstatus() {
+			return estatus;
+		}
+
+		public void setEstatus(String estatus) {
+			this.estatus = estatus;
+		}
+		public Date getFecha() {
+			return fecha;
+		}
+		public void setFecha(Date fecha) {
+			this.fecha = fecha;
+		}
+		@Override
+		public String toString() {
+			return "NodoEntrega [estatus=" + estatus + ", fecha=" + fecha + "]";
+		}
+	
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	private void expandNodes(Node node, CheckRule rule ) {
+		NodeList nodeList = node.getChildNodes();
+		for( int i = 0; i< nodeList.getLength(); i++ ) {
+			Node currentNode = nodeList.item( i );
+	
+			if( currentNode.getNodeType() == Node.ELEMENT_NODE ) {
+				
+				rule.check( currentNode );
+				expandNodes( currentNode, rule  );
+				
+
+			}
+			
+		}
+	
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	private Document convertStringToXMLDocument(String xml) {
+		
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder builder = null;
+		Document doc = null;
+		
+		try {
+			builder = factory.newDocumentBuilder();
+			System.out.println( xml );
+			doc = builder.parse( new InputSource( new StringReader( xml ) ) );
+
+		} catch ( ParserConfigurationException | SAXException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return doc;
+	}
+
+
+
+
+
+
+	
+	public static void _______main(String[] args) {
+
+		// Consultar servicio
+		try {
+			// to do something....
+		}
+		catch( Exception e ) {
+			// print exception
+		}
+		
+		// Consultar archivo
+		try {
+			// to do something....
+		}
+		catch( Exception e ) {
+			// print exception
+		}
+		
+		// consultar base
+		try {
+			// to do something....
+		}
+		catch( Exception e ) {
+			// print exception
+		}
+		
+		// Merge de archivos, parseo
+		try {
+			// to do something....
+		}
+		catch( Exception e ) {
+			// print exception
+		}
+	}
+
+
+
+
+
+
+
+
+
+	public static void _____main(String[] args) throws ParseException {
+		
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		
+		List<Date> dateList = new ArrayList<Date>();
+		dateList.add( format.parse("12/10/2018 21:10:37"));
+		dateList.add( format.parse("10/10/2018 20:10:37"));
+		dateList.add( format.parse("13/10/2018 12:10:37"));
+		dateList.add( format.parse("13/10/2018 12:10:38"));
+		dateList.add( format.parse("12/10/2018 21:10:36"));
+		
+//		System.out.println( dateList );
+		for( Date d: dateList )
+			System.out.println( d );
+		
+		Collections.sort( dateList );
+		
+		System.out.println("_____");
+//		System.out.println( dateList );
+		
+		for( Date d: dateList )
+			System.out.println( d );
+		
+	}
+	
+	
+	public static void __main(String[] args) {
 		
 		TreeXML mTreeXML = new TreeXML();
 		Body mBody = new Body();
@@ -52,6 +356,10 @@ public class DemoXMLJSON {
 	}
 }
 
+interface CheckRule{
+	
+	public default void check( Node node ) {};
+}
 
 class TreeXML {
 	
