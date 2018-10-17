@@ -13,10 +13,13 @@ public class TestGaussian {
 //		double [] vector = {56.5,113,181,214.5};
 		
 		
-		double [][] matrix = {{1,1},{30,900}};
+//		double [][] matrix = {{1,1},{30,900}};
+//
+//		double [] vector = {2,0};
 
-		double [] vector = {2,0};
+		double [][] matrix = {{2,4,-7},{1,-3,9},{-5,2,-8}};
 
+		double [] vector = {-16,22,-23};
 
 		
 		
