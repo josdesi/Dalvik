@@ -46,6 +46,7 @@ public class DemoXMLJSON {
 		System.out.println( mTreeXML );
 		System.out.println( mTreeXML2 );
 		System.out.println( mTreeXML3 );
+		System.out.println("##");
 		
 		
 	}
