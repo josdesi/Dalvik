@@ -30,18 +30,18 @@ public class DemoXMLJSON {
 		TreeXML mTreeXML2 = new TreeXML();
 		TreeXML mTreeXML3 = new TreeXML();
 		TreeXML mTreeXML4 = new TreeXML();		
-		
+		TreeXML mTreeXML5 = new TreeXML();
+				
 		mTreeXML2 = mTreeXML.clone();
 		mTreeXML3 = mTreeXML.clone();
 		mTreeXML4 = mTreeXML.clone();
-
+		mTreeXML5 = mTreeXML.clone();
+		
 		mTreeXML.setName("mTreeXML1");
 		mTreeXML2.setName("mTreeXML2");
 		mTreeXML3.setName("mTreeXML3");
 		mTreeXML4.setName("mTreeXML4");
-		// mTreeXML5...
-		// mTreeXML5.setName("mTreeXML5");
-		// ----------------------------------
+		mTreeXML5.setName("mTreeXML5");
 		
 		System.out.println( mTreeXML );
 		
